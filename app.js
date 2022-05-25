@@ -7,6 +7,8 @@ let didLose = true;
 let score = 0
 const resetButton = document.querySelector(".reset-button")
 const startButton = document.querySelector(".start-button")
+let speed = 1000
+let multiplier = 1
 
 function drawGrid() {
     for (let i = 0; i < 16; i++) {
@@ -44,7 +46,7 @@ async function game() {
         updateScore()
         drawDot(chooseDot())
         running = false
-        await waitFor(1200)
+        await waitFor(speed)
         eraseDot()
     }
     onLost()
@@ -67,23 +69,25 @@ function handleClick(i) {
     if(gridSquares[i].className === 'dot') {
         gridSquares[i].className = 'grid-square'
         running = true
-        score++
+        score += multiplier
+        speed -= 20
     } else if(gridSquares[i].className === 'purple-dot') {
         gridSquares[i].className = 'grid-square'
         running = true
-        score++
+        score+= multiplier
+        speed -= 100
     } else if(gridSquares[i].className === 'pink-dot') {
         gridSquares[i].className = 'grid-square'
         running = true
-        score++
+        score += 2*multiplier
     } else if(gridSquares[i].className === 'blue-dot') {
         gridSquares[i].className = 'grid-square'
         running = true
-        score++
+        score += multiplier
     } else if(gridSquares[i].className === 'gold-dot') {
         gridSquares[i].className = 'grid-square'
         running = true
-        score++
+        score += 10*multiplier
     }
 }
 
