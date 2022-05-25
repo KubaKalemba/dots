@@ -70,7 +70,6 @@ function handleClick(i) {
         gridSquares[i].className = 'grid-square'
         running = true
         score += multiplier
-        speed -= 20
     } else if(gridSquares[i].className === 'purple-dot') {
         gridSquares[i].className = 'grid-square'
         running = true
