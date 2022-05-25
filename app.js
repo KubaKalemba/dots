@@ -13,7 +13,7 @@ function drawGrid() {
 }
 
 function drawDot() {
-    let pos = Math.round(Math.random()*256)
+    let pos = Math.round(Math.random() * 256)
     gridSquares[pos].className = 'dot'
     currDotIndex = pos
 }

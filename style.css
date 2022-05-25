@@ -4,13 +4,24 @@ body {
 }
 
 header {
+    font-size: 2em;
+    font-weight: bold;
+    color: ghostwhite;
+    border: solid ghostwhite 1px;
+    border-radius: 30%;
+    padding: 8px;
+}
 
+.header-div {
+    margin: 16px;
+    padding: 16px;
 }
 
 .grid-container {
     display: inline-grid;
     grid-template-columns: repeat(16,auto);
     background-color: white;
+    border: solid black 16px;
 }
 
 .grid-square {
@@ -32,5 +43,23 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.score-counter {
+    padding: 16px;
+}
+
+.reset-button {
+    margin: 16px;
+    padding: 16px;
+    background-color: rgba(255, 255, 255, 0);
+    color: ghostwhite;
+    border: solid ghostwhite 1px;
+    border-radius: 50%;
+    transition: transform 0.2s ease-in-out;
+}
+
+.reset-button:hover {
+    transform: scale(1.2);
 }
 
