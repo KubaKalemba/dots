@@ -36,14 +36,15 @@ async function game() {
 
     const waitFor = (time) => {
         return new Promise((resolve) => {
-            setTimeout(() => resolve(true), time);
+            setTimeout(() => resolve(true), time)
         });
     };
 
     while(running) {
+        updateScore()
         eraseDot()
         drawDot()
-        running = false;
+        running = false
         await waitFor(1000)
     }
 }
@@ -57,9 +58,20 @@ function addEventListeners() {
         gridSquares[i].addEventListener('click', () => {
             if(gridSquares[i].className === 'dot') {
                 gridSquares[i].className = 'grid-square'
-                running = true;
+                running = true
+                score++
             }
         });
     }
 }
 addEventListeners()
+
+function updateScore() {
+    let scoreText = document.querySelector(".header")
+    if (score > 0) scoreText.innerHTML = score.toString();
+}
+
+function onLost() {
+
+}
+
