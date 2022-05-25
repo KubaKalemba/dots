@@ -1,6 +1,7 @@
 const grid = document.querySelector(".grid-container")
 const scoreText = document.querySelector(".header")
 const gridSquares = []
+const timerIterations = 10
 let currDotIndex
 let running = false
 let didLose = true;
@@ -47,8 +48,8 @@ async function game() {
         drawDot(chooseDot())
         running = false
 
-        for (let i = 0; i < 100; i++){
-            await waitFor(speed / 100)
+        for (let i = 0; i < timerIterations; i++){
+            await waitFor(speed / timerIterations)
             // updateTimer(i)
         }
         eraseDot()
