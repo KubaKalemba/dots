@@ -88,10 +88,21 @@ function handleClick(i) {
         gridSquares[i].className = 'grid-square'
         running = true
         score += multiplier
-    } else if(gridSquares[i].className === 'gold-dot') {
+        incMultiplier('blue-dot')
+    } else if(gridSquares[i].className === 'cyan-dot') {
+        gridSquares[i].className = 'grid-square'
+        running = true
+        incMultiplier('cyan-dot')
+    }
+    else if(gridSquares[i].className === 'gold-dot') {
         gridSquares[i].className = 'grid-square'
         running = true
         score += 10*multiplier
+        incMultiplier('gold-dot')
+    } else if(gridSquares[i].className === 'black-dot') {
+        gridSquares[i].className = 'grid-square'
+        running = true
+        score += 10 * multiplier
     }
 }
 
@@ -121,13 +132,18 @@ function onLost() {
 function chooseDot() {
     let num = Math.round(Math.random()*1000)
     if(num < 600) {
+        if(num%10 === 0) {
+            return 'black-dot'
+        }
         return 'dot'
     } else if(num < 800) {
         return 'purple-dot';
     } else if(num < 882) {
         return 'pink-dot'
-    } else if(num < 999) {
+    } else if(num < 931) {
         return 'blue-dot'
+    } else if(num < 999) {
+        return 'cyan-dot'
     } else {
         return 'gold-dot'
     }
@@ -144,6 +160,9 @@ function updateTimer(i) {
 function incMultiplier(dot) {
     if(dot === 'blue-dot') {
         multiplier *= 2
+    }
+    if(dot === 'cyan-dot') {
+        multiplier *= 5
     }
     if(dot === 'gold-dot') {
         multiplier *= 20

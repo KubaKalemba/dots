@@ -48,7 +48,7 @@ header:hover {
     border-radius: 50%;
 }
 
-.dot, .purple-dot, .blue-dot, .pink-dot {
+.dot, .purple-dot, .blue-dot, .pink-dot, .cyan-dot {
     height: 25px;
     width: 25px;
     border-radius: 50%;
@@ -74,10 +74,21 @@ header:hover {
     background-color: darkgoldenrod;
 }
 
+.cyan-dot {
+    background-color: rgba(72, 250, 207, 0.82);
+}
+
 .dot:hover, .blue-dot:hover, .pink-dot:hover, .purple-dot:hover, .gold-dot:hover {
     height: 25px;
     width: 25px;
     background-color: #45a145;
+    border-radius: 50%;
+}
+
+.cyan-dot:hover, .blue-dot:hover {
+    height: 25px;
+    width: 25px;
+    background-color: #d20662;
     border-radius: 50%;
 }
 
@@ -90,9 +101,9 @@ header:hover {
     padding: 16px;
 }
 
-.reset-button, .start-button {
+.start-button {
     padding: 16px;
-    font-size: 1em;
+    font-size: 2em;
     background-color: rgba(255, 255, 255, 0);
     color: ghostwhite;
     border: rgba(248, 248, 255, 0);
@@ -100,7 +111,7 @@ header:hover {
     transition: transform 0.2s ease-in-out;
 }
 
-.reset-button:hover, .start-button:hover {
+.start-button:hover {
     transform: scale(1.33);
     font-weight: bolder;
     background-color: rgba(81, 70, 162, 0.66);
