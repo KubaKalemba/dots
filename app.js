@@ -28,16 +28,22 @@ function drawSquare() {
 function startGame() {
     drawGrid()
     drawDot()
-    //game()
+    game()
 }
 startGame()
 
-function game() {
+async function game() {
+
+    const waitFor = (time) => {
+        return new Promise((resolve) => {
+            setTimeout(() => resolve(true), time);
+        });
+    };
+
     while(running) {
-        setTimeout(() => {
-            eraseDot()
-            drawDot()
-        }, 1000)
+        await waitFor(100)
+        eraseDot()
+        drawDot()
     }
 }
 
