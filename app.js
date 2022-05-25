@@ -46,7 +46,11 @@ async function game() {
         updateScore()
         drawDot(chooseDot())
         running = false
-        await waitFor(speed)
+
+        for (let i = 0; i < 100; i++){
+            await waitFor(speed / 100)
+            // updateTimer(i)
+        }
         eraseDot()
     }
     onLost()
