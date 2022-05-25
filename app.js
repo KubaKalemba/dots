@@ -1,7 +1,9 @@
 const grid = document.querySelector(".grid-container")
+const scoreText = document.querySelector(".header")
 const gridSquares = []
 let currDotIndex
 let running = false
+let didLose = true;
 let score = 0
 const resetButton = document.querySelector(".reset-button")
 const startButton = document.querySelector(".start-button")
@@ -27,12 +29,8 @@ function drawSquare() {
     gridSquares.push(div)
 }
 
-function startGame() {
-    drawGrid()
-    drawDot()
-    game()
-}
-startGame()
+drawGrid()
+
 
 async function game() {
 
@@ -44,10 +42,10 @@ async function game() {
 
     while(running) {
         updateScore()
-        eraseDot()
         drawDot()
         running = false
-        await waitFor(1000)
+        await waitFor(1200)
+        eraseDot()
     }
     onLost()
 }
@@ -71,30 +69,24 @@ addEventListeners()
 
 startButton.addEventListener('click', newGame)
 
-resetButton.addEventListener('click', resetGame)
-
-function resetGame() {
-    running = false
-    eraseDot()
-    score = 0
-    updateScore()
-}
-
 function newGame() {
-    if(running === false) {
+    if(didLose === true) {
+        didLose = false
         running = true
-        game()
+        score = 0
+        game().then(onLost)
     }
 }
 
 
 function updateScore() {
-    let scoreText = document.querySelector(".header")
+
     if (score > 0) scoreText.innerHTML = score.toString()
     else scoreText.innerHTML = 'dots'
 }
 
 function onLost() {
-    alert("YOU LOST :Cringe")
+    scoreText.innerHTML = 'you lost'
+    didLose = true
 }
 
