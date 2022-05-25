@@ -16,9 +16,9 @@ function drawGrid() {
     }
 }
 
-function drawDot() {
+function drawDot(className) {
     let pos = Math.round(Math.random() * 256)
-    gridSquares[pos].className = 'dot'
+    gridSquares[pos].className = className
     currDotIndex = pos
 }
 
@@ -42,7 +42,7 @@ async function game() {
 
     while(running) {
         updateScore()
-        drawDot()
+        drawDot(chooseDot())
         running = false
         await waitFor(1200)
         eraseDot()
@@ -57,15 +57,35 @@ function eraseDot() {
 function addEventListeners() {
     for (let i = 0; i < gridSquares.length; i++) {
         gridSquares[i].addEventListener('click', () => {
-            if(gridSquares[i].className === 'dot') {
-                gridSquares[i].className = 'grid-square'
-                running = true
-                score++
-            }
+            handleClick(i)
         });
     }
 }
 addEventListeners()
+
+function handleClick(i) {
+    if(gridSquares[i].className === 'dot') {
+        gridSquares[i].className = 'grid-square'
+        running = true
+        score++
+    } else if(gridSquares[i].className === 'purple-dot') {
+        gridSquares[i].className = 'grid-square'
+        running = true
+        score++
+    } else if(gridSquares[i].className === 'pink-dot') {
+        gridSquares[i].className = 'grid-square'
+        running = true
+        score++
+    } else if(gridSquares[i].className === 'blue-dot') {
+        gridSquares[i].className = 'grid-square'
+        running = true
+        score++
+    } else if(gridSquares[i].className === 'gold-dot') {
+        gridSquares[i].className = 'grid-square'
+        running = true
+        score++
+    }
+}
 
 startButton.addEventListener('click', newGame)
 
@@ -88,5 +108,20 @@ function updateScore() {
 function onLost() {
     scoreText.innerHTML = 'you lost'
     didLose = true
+}
+
+function chooseDot() {
+    let num = Math.round(Math.random()*1000)
+    if(num < 600) {
+        return 'dot'
+    } else if(num < 800) {
+        return 'purple-dot';
+    } else if(num < 882) {
+        return 'pink-dot'
+    } else if(num < 999) {
+        return 'blue-dot'
+    } else {
+        return 'gold-dot'
+    }
 }
 

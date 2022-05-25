@@ -41,14 +41,33 @@ header:hover {
     border-radius: 50%;
 }
 
-.dot {
+.dot, .purple-dot, .blue-dot, .pink-dot {
     height: 25px;
     width: 25px;
-    background-color: palevioletred;
     border-radius: 50%;
 }
 
-.dot:hover {
+.dot {
+    background-color: #e8789d;
+}
+
+.purple-dot {
+    background-color: rgba(146, 42, 243, 0.83);
+}
+
+.pink-dot {
+    background-color: #ce67d2;
+}
+
+.blue-dot {
+    background-color: #a2e6fd;
+}
+
+.gold-dot {
+    background-color: darkgoldenrod;
+}
+
+.dot:hover, .blue-dot:hover, .pink-dot:hover, .purple-dot:hover, .gold-dot:hover {
     height: 25px;
     width: 25px;
     background-color: #45a145;
