@@ -1,11 +1,13 @@
 const grid = document.querySelector(".grid-container")
 const scoreText = document.querySelector(".header")
+const highScoreLabel = document.querySelector(".highscore")
 const gridSquares = []
 const timerIterations = 100
 let currDotIndex
 let running = false
 let didLose = true;
 let score = 0
+let highScore = 0
 const resetButton = document.querySelector(".reset-button")
 const startButton = document.querySelector(".start-button")
 let speed = 1000
@@ -124,12 +126,18 @@ function updateScore() {
     else scoreText.innerHTML = 'dots'
 }
 
+function updateHighScore() {
+    if(score > highScore) highScore = score;
+    highScoreLabel.innerHTML = "HIGHSCORE: " + highScore.toString()
+}
+
 function onLost() {
     timer.innerHTML = score.toString()
     scoreText.innerHTML = 'you lost'
     didLose = true
     multiplier = 1
     speed = 1000
+    updateHighScore()
 }
 
 function chooseDot() {
