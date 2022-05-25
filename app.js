@@ -45,8 +45,10 @@ async function game() {
     await countDown()
     while(running) {
         updateScore()
-        drawDot(chooseDot())
-        running = false
+        let currDot = chooseDot()
+        drawDot(currDot)
+        if(currDot !== 'black-dot')
+            running = false
 
         for (let i = 0; i < timerIterations; i++){
             await waitFor(speed / timerIterations)
@@ -100,9 +102,7 @@ function handleClick(i) {
         score += 10*multiplier
         incMultiplier('gold-dot')
     } else if(gridSquares[i].className === 'black-dot') {
-        gridSquares[i].className = 'grid-square'
-        running = true
-        score += 10 * multiplier
+        running = false
     }
 }
 
@@ -125,8 +125,11 @@ function updateScore() {
 }
 
 function onLost() {
+    timer.innerHTML = score.toString()
     scoreText.innerHTML = 'you lost'
     didLose = true
+    multiplier = 1
+    speed = 1000
 }
 
 function chooseDot() {
