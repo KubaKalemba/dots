@@ -41,9 +41,10 @@ async function game() {
     };
 
     while(running) {
-        await waitFor(100)
         eraseDot()
         drawDot()
+        running = false;
+        await waitFor(1000)
     }
 }
 
@@ -56,7 +57,7 @@ function addEventListeners() {
         gridSquares[i].addEventListener('click', () => {
             if(gridSquares[i].className === 'dot') {
                 gridSquares[i].className = 'grid-square'
-                drawDot()
+                running = true;
             }
         });
     }
