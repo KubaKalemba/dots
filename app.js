@@ -35,15 +35,14 @@ function drawSquare() {
 
 drawGrid()
 
+const waitFor = (time) => {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(true), time)
+    });
+};
 
 async function game() {
-
-    const waitFor = (time) => {
-        return new Promise((resolve) => {
-            setTimeout(() => resolve(true), time)
-        });
-    };
-
+    await countDown()
     while(running) {
         updateScore()
         drawDot(chooseDot())
@@ -149,5 +148,17 @@ function incMultiplier(dot) {
     if(dot === 'gold-dot') {
         multiplier *= 20
     }
+}
+
+async function countDown() {
+    timer.innerHTML = "3"
+    await waitFor(1000)
+    timer.innerHTML = "2"
+    await waitFor(1000)
+    timer.innerHTML = "1"
+    await waitFor(1000)
+
+
+
 }
 
