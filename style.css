@@ -45,6 +45,10 @@ header {
     justify-content: center;
 }
 
+.score-counter {
+    padding: 16px;
+}
+
 .reset-button {
     margin: 16px;
     padding: 16px;
