@@ -1,7 +1,7 @@
 const grid = document.querySelector(".grid-container")
 const scoreText = document.querySelector(".header")
 const gridSquares = []
-const timerIterations = 10
+const timerIterations = 100
 let currDotIndex
 let running = false
 let didLose = true;
@@ -10,6 +10,7 @@ const resetButton = document.querySelector(".reset-button")
 const startButton = document.querySelector(".start-button")
 let speed = 1000
 let multiplier = 1
+const timer = document.querySelector('.timer')
 
 function drawGrid() {
     for (let i = 0; i < 16; i++) {
@@ -50,7 +51,7 @@ async function game() {
 
         for (let i = 0; i < timerIterations; i++){
             await waitFor(speed / timerIterations)
-            // updateTimer(i)
+            updateTimer(i)
         }
         eraseDot()
     }
@@ -130,6 +131,23 @@ function chooseDot() {
         return 'blue-dot'
     } else {
         return 'gold-dot'
+    }
+}
+
+function updateTimer(i) {
+    let sec = i
+    let first = i%10
+    let second = i%100
+    let third = i%1000
+    timer.innerHTML = sec + '.' + first + second + third
+}
+
+function incMultiplier(dot) {
+    if(dot === 'blue-dot') {
+        multiplier *= 2
+    }
+    if(dot === 'gold-dot') {
+        multiplier *= 20
     }
 }
 
