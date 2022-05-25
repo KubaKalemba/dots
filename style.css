@@ -5,11 +5,16 @@ body {
 
 header {
     font-size: 2em;
-    font-weight: bold;
+    font-weight: bolder;
     color: ghostwhite;
     border: solid ghostwhite 1px;
     border-radius: 30%;
     padding: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+header:hover {
+    transform: rotate(180deg) ;
 }
 
 .header-div {
@@ -49,7 +54,7 @@ header {
     padding: 16px;
 }
 
-.reset-button {
+.reset-button, .start-button {
     margin: 16px;
     padding: 16px;
     background-color: rgba(255, 255, 255, 0);
@@ -59,7 +64,7 @@ header {
     transition: transform 0.2s ease-in-out;
 }
 
-.reset-button:hover {
+.reset-button:hover, .start-button:hover {
     transform: scale(1.2);
+    font-weight: bolder;
 }
-
