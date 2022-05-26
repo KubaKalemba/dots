@@ -75,43 +75,36 @@ function addEventListeners() {
 addEventListeners()
 
 function handleClick(i) {
+    if(gridSquares[i].className === 'grid-square') return
+
     if(gridSquares[i].className === 'dot') {
-        gridSquares[i].className = 'grid-square'
-        running = true
         score += multiplier
     } else if(gridSquares[i].className === 'purple-dot') {
-        gridSquares[i].className = 'grid-square'
-        running = true
         score+= multiplier
         speed -= 100
     } else if(gridSquares[i].className === 'pink-dot') {
-        gridSquares[i].className = 'grid-square'
-        running = true
         score += 2*multiplier
     } else if(gridSquares[i].className === 'blue-dot') {
-        gridSquares[i].className = 'grid-square'
-        running = true
         score += multiplier
         incMultiplier('blue-dot')
     } else if(gridSquares[i].className === 'cyan-dot') {
-        gridSquares[i].className = 'grid-square'
-        running = true
         incMultiplier('cyan-dot')
     }
     else if(gridSquares[i].className === 'gold-dot') {
-        gridSquares[i].className = 'grid-square'
-        running = true
         score += 10*multiplier
         incMultiplier('gold-dot')
     } else if(gridSquares[i].className === 'black-dot') {
         running = false
     }
+    gridSquares[i].className = 'grid-square'
+    running = true
 }
 
 startButton.addEventListener('click', newGame)
 
 function newGame() {
     if(didLose === true) {
+        scoreText.innerHTML = 'dots'
         didLose = false
         running = true
         score = 0
@@ -121,14 +114,15 @@ function newGame() {
 
 
 function updateScore() {
-
     if (score > 0) scoreText.innerHTML = score.toString()
     else scoreText.innerHTML = 'dots'
 }
 
 function updateHighScore() {
+    document.cookie = "HIGHSCORE = "+highScore.toString()+"; expires=Thu, 18 Dec 2022 12:00:00 UTC; path=/"
     if(score > highScore) highScore = score;
-    highScoreLabel.innerHTML = "HIGHSCORE: " + highScore.toString()
+    highScoreLabel.innerHTML = document.cookie.slice(3,document.cookie.length)
+    console.log(document.cookie.slice(0,3))
 }
 
 function onLost() {
@@ -153,7 +147,7 @@ function chooseDot() {
         return 'pink-dot'
     } else if(num < 931) {
         return 'blue-dot'
-    } else if(num < 999) {
+    } else if(num < 998) {
         return 'cyan-dot'
     } else {
         return 'gold-dot'
@@ -187,8 +181,5 @@ async function countDown() {
     await waitFor(1000)
     timer.innerHTML = "1"
     await waitFor(1000)
-
-
-
 }
 
